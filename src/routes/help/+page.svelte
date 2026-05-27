@@ -38,6 +38,7 @@
   <li><a href="#" data-page="10">9. Raster &amp; Fang</a></li>
   <li><a href="#" data-page="11">10. Dateioperationen &amp; Export</a></li>
   <li><a href="#" data-page="12">11. Tastaturkürzel</a></li>
+  <li><a href="#" data-page="13">12. Formbibliothek</a></li>
 </ul>`
     },
     {
@@ -273,6 +274,37 @@
 <p>Über Menü → Datei → PDF-Export öffnet sich der PDF-Export-Dialog mit Einstellungen für Papierformat (DIN A0–A5), Ränder und optionale Rasterdarstellung.</p>
 <h3>10.7 Dateiformat .vcs</h3>
 <p>Das Format <code>.vcs</code> ist eine SQLite-3-Datenbank. Es enthält alle Objekte, Ebenen, Metadaten und eingebettete Bilder. Die Datei kann mit jedem SQLite-Browser untersucht werden.</p>`
+    },
+    {
+      id: 'shapes',
+      title: '12. Formbibliothek',
+      content: `<h2>12. Formbibliothek</h2>
+<p>Die Formbibliothek befindet sich in der rechten Seitenleiste unter dem Reiter <strong>Formen</strong> (Stern-Symbol). Sie enthält zwei Bereiche: eigene gespeicherte Formen und vordefinierte Vorlagen.</p>
+
+<h3>12.1 Eigene Formen speichern</h3>
+<p>Sie können beliebige Objekte von der Zeichenfläche als wiederverwendbare Form speichern:</p>
+<ol>
+  <li>Objekte auf der Zeichenfläche markieren – oder nichts markieren, um alle Objekte zu speichern.</li>
+  <li>Im Bereich <strong>Eigene Formen</strong> auf den Button <strong>+ Speichern</strong> klicken.</li>
+  <li>Einen <strong>Namen</strong> eingeben (Pflichtfeld).</li>
+  <li>Optional eine <strong>Gruppe</strong> eingeben – bereits verwendete Gruppen werden als Vorschlagsliste angeboten.</li>
+  <li>Auf <strong>Speichern</strong> klicken.</li>
+</ol>
+<p>Die Form wird mit einem Vorschau-Icon gespeichert und bleibt dauerhaft in der App erhalten – unabhängig davon, welches Dokument geöffnet ist.</p>
+
+<h3>12.2 Eigene Form einfügen</h3>
+<p>Auf das <strong>[+]-Symbol</strong> links neben dem Formnamen klicken. Die Form wird zentriert auf der aktuellen Zeichenfläche eingefügt.</p>
+<p>Besteht die Form aus mehreren Objekten, werden sie automatisch als <strong>Gruppe</strong> eingefügt und können gemeinsam verschoben und skaliert werden.</p>
+
+<h3>12.3 Eigene Form löschen</h3>
+<p>Auf das <strong>[×]-Symbol</strong> rechts neben dem Formnamen klicken. Die Form wird dauerhaft entfernt.</p>
+
+<h3>12.4 Vordefinierte Vorlagen</h3>
+<p>Im unteren Teil des Formen-Reiters befinden sich vordefinierte Vorlagen, gegliedert in Gruppen (z. B. Grundformen, technische Symbole). Diese sind fest in der App eingebaut und immer verfügbar.</p>
+<p>Klick auf das <strong>[+]-Symbol</strong> fügt die Vorlage zentriert auf der Zeichenfläche ein. Danach kann sie wie jedes andere Objekt bearbeitet werden.</p>
+
+<h3>12.5 Gruppen</h3>
+<p>Eigene Formen können in Gruppen organisiert werden. Die Gruppen erscheinen als aufklappbare Bereiche. Klick auf den Gruppenname öffnet oder schließt die Gruppe.</p>`
     },
     {
       id: 'shortcuts',
