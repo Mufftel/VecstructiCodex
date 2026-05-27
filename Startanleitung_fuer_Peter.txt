@@ -61,6 +61,48 @@ Eine externe SQLite-Installation, Node, npm, Rust oder sonstige Entwickler-
 werkzeuge werden zum Benutzen der App nicht benoetigt.
 
 
+Formen einfuegen
+----------------
+
+In der rechten Seitenleiste gibt es den Reiter "Formen" (das Stern-Symbol).
+
+Dort findest du zwei Bereiche:
+
+
+1. Eigene Formen
+
+Hier kannst du selbst erstellte Formen speichern und wiederverwenden.
+
+Form speichern:
+- Objekte auf der Leinwand auswaehlen (oder nichts auswaehlen = alles wird gespeichert)
+- Oben im Bereich "Eigene Formen" auf den "+ Speichern"-Button klicken
+- Name und optional eine Gruppe eingeben
+- Auf "Speichern" klicken
+
+Die gespeicherten Formen bleiben dauerhaft in der App erhalten,
+auch wenn du ein anderes Dokument oeffnest oder die App neu startest.
+
+Form einfuegen:
+- Auf das [+]-Symbol neben dem Formnamen klicken
+- Die Form wird zentriert auf der Leinwand eingefuegt
+- Besteht die Form aus mehreren Objekten, werden sie als Gruppe eingefuegt
+
+Form loeschen:
+- Auf das [x]-Symbol rechts neben dem Formnamen klicken
+
+
+2. Formbibliothek (vordefinierte Vorlagen)
+
+Enthalt fertige Formen wie Grundformen, technische Symbole und mehr.
+Diese sind fest eingebaut und immer verfuegbar.
+
+Form einfuegen:
+- Auf das [+]-Symbol neben dem Formnamen klicken
+- Die Form erscheint zentriert auf der Leinwand
+- Danach kann sie wie jedes andere Objekt verschoben,
+  skaliert und bearbeitet werden
+
+
 Wenn etwas nicht startet
 ------------------------
 
