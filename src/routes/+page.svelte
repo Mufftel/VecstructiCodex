@@ -3,10 +3,11 @@
   import { onMount, tick } from 'svelte';
   import { getCurrentWebviewWindow, WebviewWindow } from '@tauri-apps/api/webviewWindow';
   import { LogicalSize, LogicalPosition } from '@tauri-apps/api/dpi';
-  import { currentMonitor } from '@tauri-apps/api/window';
+  import { currentMonitor, getCurrentWindow } from '@tauri-apps/api/window';
   import { message as dialogMessage, open as dialogOpen, save as dialogSave } from '@tauri-apps/plugin-dialog';
   import { exists, mkdir, readDir, readFile, remove, writeFile } from '@tauri-apps/plugin-fs';
   import { appLocalDataDir, basename, dirname, join } from '@tauri-apps/api/path';
+  import { revealItemInDir } from '@tauri-apps/plugin-opener';
   import jsPDF from 'jspdf';
   import html2canvas from 'html2canvas';
   import { DB_PATH, DEFAULT_DOCUMENT_ID, assertDocumentDbEmpty, clearDocumentDb, closeDb, compactDb, deleteObjectsByUid, getDb, getDbPath, initDocumentDb, loadDocumentLayout, loadLayerObjects, loadLineObjects, loadPathObjects, loadRectObjects, loadTextObjects, queueDbWrite, saveDocumentLayout, setDbPath, upsertLineObject, upsertPathObject, upsertRectObject, upsertTextObject, type DocumentLayoutSettings } from '$lib/db';
@@ -29,6 +30,23 @@
     setDbPath(DB_PATH);
     void resetToEmptyWorkingDocument(false);
     void reloadSavedShapes();
+    void (async () => {
+      try {
+        const appWin = getCurrentWindow();
+        const monitor = await currentMonitor();
+        if (monitor) {
+          const sf = monitor.scaleFactor;
+          const screenW = monitor.size.width / sf;
+          const screenH = monitor.size.height / sf;
+          const x = (screenW - 1230) / 2;
+          const y = (screenH - 1000) / 2;
+          await appWin.setPosition(new LogicalPosition(x, y));
+        }
+        await appWin.setSize(new LogicalSize(1230, 1000));
+        await appWin.setMinSize(new LogicalSize(780, 800));
+      } catch {}
+      appVisible = true;
+    })();
     const unlistenPromise = win.onCloseRequested(async (event) => {
       if (closing) return;
       event.preventDefault();
@@ -1331,6 +1349,46 @@
     const path = await shapesFilePath();
     await writeFile(path, new TextEncoder().encode(JSON.stringify(shapes)));
   }
+
+  async function exportShapes() {
+    try {
+      const savePath = await dialogSave({
+        title: 'Eigene Formen exportieren',
+        defaultPath: 'vecstructi_shapes.json',
+        filters: [{ name: 'JSON', extensions: ['json'] }]
+      });
+      if (!savePath) return;
+      const shapes = await loadShapesFromFile();
+      await writeFile(savePath as string, new TextEncoder().encode(JSON.stringify(shapes, null, 2)));
+      formenSetupStatus = `✓ ${shapes.length} Formen exportiert`;
+    } catch (e) {
+      formenSetupStatus = '✗ Export fehlgeschlagen';
+    }
+  }
+
+  async function importShapes() {
+    try {
+      const selected = await dialogOpen({
+        title: 'Eigene Formen importieren',
+        filters: [{ name: 'JSON', extensions: ['json'] }],
+        multiple: false
+      });
+      if (!selected) return;
+      const bytes = await readFile(selected as string);
+      const imported: SavedShape[] = JSON.parse(new TextDecoder().decode(bytes));
+      if (!Array.isArray(imported)) throw new Error('Ungültiges Format');
+      const existing = await loadShapesFromFile();
+      const existingIds = new Set(existing.map(s => s.id));
+      const neu = imported.filter(s => !existingIds.has(s.id));
+      const merged = [...existing, ...neu];
+      await saveShapesToFile(merged);
+      savedShapes = merged;
+      formenSetupStatus = `✓ ${neu.length} neue Formen importiert (${imported.length - neu.length} bereits vorhanden)`;
+    } catch (e) {
+      formenSetupStatus = '✗ Import fehlgeschlagen';
+    }
+  }
+
   let shapeSaveDialogOpen = $state(false);
   let shapeSaveName = $state('');
   let shapeSaveGruppe = $state('');
@@ -3385,7 +3443,12 @@
   }
 
   let vecstructiMenuOffen = $state(false);
-  let aboutDialogOpen    = $state(false);
+  let appVisible             = $state(false);
+  let canvasReady            = $state(false);
+  let aboutDialogOpen        = $state(false);
+  let formenSetupOpen        = $state(false);
+  let formenSetupPfad        = $state('');
+  let formenSetupStatus      = $state('');
   let dateiMenuOffen     = $state(false);
   let bearbeitenMenuOffen = $state(false);
   let anordnenMenuOffen  = $state(false);
@@ -3923,10 +3986,12 @@
   async function fileNew() {
     await resetToEmptyWorkingDocument(true);
     persistDocumentLayoutSoon();
+    canvasReady = true;
   }
 
   async function fileClose() {
     await resetToEmptyWorkingDocument(false);
+    canvasReady = false;
   }
 
   function addImportedObjects(imported: DrawnObject[]) {
@@ -4785,6 +4850,7 @@ function scaleRichHtmlFonts(html: string, factor: number): string {
       currentFile = path;
       await loadCurrentDbIntoApp();
       unsaved = false;
+      canvasReady = true;
     } catch (e) {
       console.error(e);
       await dialogMessage(`Datei konnte nicht geöffnet werden:\n${e instanceof Error ? e.message : String(e)}`, {
@@ -5725,6 +5791,49 @@ onwheel={(ev) => {
 {/if}
 
 
+<!-- ── Formbibliothek Setup Dialog ───────────────────────────────────────── -->
+{#if formenSetupOpen}
+<div class="setup-backdrop" onclick={() => formenSetupOpen = false}>
+  <div class="formen-setup-dialog" onclick={(e) => e.stopPropagation()}>
+    <div class="setup-header">
+      <span>Setup</span>
+      <button class="setup-close" onclick={() => formenSetupOpen = false}>✕</button>
+    </div>
+    <div class="formen-setup-body">
+      <div class="formen-setup-section">
+        <div class="formen-setup-label">Speicherort der eigenen Formen</div>
+        <div class="formen-setup-path">{formenSetupPfad}</div>
+      </div>
+      <div class="formen-setup-section">
+        <div class="formen-setup-label">Anzahl gespeicherter Formen</div>
+        <div class="formen-setup-count">{savedShapes.length}</div>
+      </div>
+      <div class="formen-setup-actions">
+        <button class="btn-secondary" onclick={exportShapes}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportieren…
+        </button>
+        <button class="btn-secondary" onclick={importShapes}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Importieren…
+        </button>
+        <button class="btn-secondary" onclick={() => revealItemInDir(formenSetupPfad)}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Im Finder zeigen
+        </button>
+      </div>
+      {#if formenSetupStatus}
+        <div class="formen-setup-status">{formenSetupStatus}</div>
+      {/if}
+    </div>
+    <div class="setup-footer">
+      <button class="btn-primary" onclick={() => formenSetupOpen = false}>Schließen</button>
+    </div>
+  </div>
+</div>
+{/if}
+
+
 <!-- ── PDF Vorschau Dialog ────────────────────────────────────────────────── -->
 {#if multiPasteOpen}
 <div class="setup-backdrop" onclick={(e) => e.stopPropagation()}>
@@ -5787,7 +5896,7 @@ onwheel={(ev) => {
         <input type="text" class="mp-input" placeholder="z.B. Grundrisse" list="saved-shape-groups-list" bind:value={shapeSaveGruppe} />
         <datalist id="saved-shape-groups-list">
           {#each [...new Set(savedShapes.map(s => s.gruppe).filter(g => g))] as g}
-            <option value={g}/>
+            <option value={g}></option>
           {/each}
         </datalist>
       </label>
@@ -5966,7 +6075,13 @@ onwheel={(ev) => {
 {/if}
 
 <!-- ── Main App ────────────────────────────────────────────────────────────── -->
-<div class="app">
+<div class="startup-screen" class:startup-hidden={appVisible}>
+  <div class="startup-logo">V</div>
+  <div class="startup-name">Vecstructi</div>
+  <div class="startup-version">Version {APP_INFO.version}</div>
+</div>
+
+<div class="app" class:app-fadein={appVisible}>
 
   <!-- Header -->
   <header class="app-header">
@@ -5986,6 +6101,12 @@ onwheel={(ev) => {
               <button class="menu-cmd" onclick={() => { closeAllMenus(); aboutDialogOpen = true; }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 10v7"/><path d="M12 7h.01"/></svg>
                 Über
+              </button>
+            </li>
+            <li>
+              <button class="menu-cmd" onclick={async () => { closeAllMenus(); formenSetupPfad = await shapesFilePath(); formenSetupStatus = ''; formenSetupOpen = true; }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Setup…
               </button>
             </li>
             <li class="menu-sep"></li>
@@ -7278,7 +7399,13 @@ onwheel={(ev) => {
 
     <!-- Right: Properties 250 px -->
     <!-- Right: Properties Panel 250px -->
-    <aside class="props-bar" aria-label="Eigenschaften">
+    <aside class="props-bar" aria-label="Eigenschaften" class:props-bar-locked={!canvasReady}>
+      {#if !canvasReady}
+        <div class="props-bar-lock-overlay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          <span>Kein Dokument geöffnet</span>
+        </div>
+      {/if}
 
       <!-- Panel-Header -->
         <div class="pb-header">
@@ -8552,6 +8679,24 @@ onwheel={(ev) => {
                       </svg>
                     {/if}
                   </button>
+                  <button
+                    class="eb-icon-btn eb-obj-delete"
+                    title="Objekt löschen"
+                    onclick={(ev) => {
+                      ev.stopPropagation();
+                      if (obj.gesperrt) return;
+                      pushUndo();
+                      deletePersistedObjects([obj]);
+                      objects = objects.filter(o => o !== obj);
+                      if (selectedObj === obj) clearSelection();
+                      else selectedObjs = selectedObjs.filter(o => o !== obj);
+                      unsaved = true;
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+                    </svg>
+                  </button>
                 </div>
               {/each}
             {/if}
@@ -9164,6 +9309,40 @@ onwheel={(ev) => {
 
 
 
+  .formen-setup-dialog {
+    background: #1e2128;
+    border: 1px solid #3a3f4a;
+    border-radius: 10px;
+    width: 420px;
+    color: #ccc;
+    font-size: 13px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.6);
+    display: flex; flex-direction: column;
+  }
+  .formen-setup-body {
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .formen-setup-section {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .formen-setup-label {
+    font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .04em;
+  }
+  .formen-setup-path {
+    font-size: 11px; color: #aaa; word-break: break-all;
+    background: #14171d; border: 1px solid #2a2f3a; border-radius: 5px;
+    padding: 6px 10px; font-family: monospace;
+  }
+  .formen-setup-count {
+    font-size: 15px; color: #e0e0e0; font-weight: 600;
+  }
+  .formen-setup-actions {
+    display: flex; gap: 10px;
+  }
+  .formen-setup-status {
+    font-size: 12px; color: #7ec8a0; padding: 4px 0;
+  }
   .setup-footer {
     padding: 12px 22px;
     border-top: 1px solid #262f3f;
@@ -9239,6 +9418,30 @@ onwheel={(ev) => {
   .app {
     display: flex; flex-direction: column;
     width: 100%; height: 100vh;
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+  .app-fadein { opacity: 1; }
+
+  .startup-screen {
+    position: fixed; inset: 0; z-index: 99999;
+    background: #0f172a;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; pointer-events: none;
+    transition: opacity 180ms ease;
+  }
+  .startup-hidden { opacity: 0; pointer-events: none; }
+  .startup-logo {
+    width: 48px; height: 48px; border-radius: 11px;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 700; color: #fff;
+  }
+  .startup-name {
+    font-size: 18px; font-weight: 600; color: #e2e8f0; letter-spacing: .02em;
+  }
+  .startup-version {
+    font-size: 11px; color: #64748b;
   }
 
   .app-header {
@@ -9538,7 +9741,19 @@ onwheel={(ev) => {
     max-height: calc(100vh - 82px);
     min-height: 0;
     overflow: hidden;
+    position: relative;
   }
+  .props-bar-locked { pointer-events: none; }
+  .props-bar-lock-overlay {
+    position: absolute; inset: 0; z-index: 100;
+    background: rgba(20,20,20,.72);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; color: #555;
+    font-size: 12px; pointer-events: all;
+    backdrop-filter: blur(1px);
+  }
+  .props-bar-lock-overlay span { color: #444; letter-spacing: .02em; }
 
   .pb-header {
     display: flex; align-items: center; gap: 8px;
@@ -9826,6 +10041,15 @@ onwheel={(ev) => {
     height: 18px;
     opacity: .75;
   }
+  .eb-obj-delete {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    opacity: 0;
+    color: #f87171;
+    transition: opacity 120ms;
+  }
+  .eb-obj-row:hover .eb-obj-delete { opacity: .8; }
+  .eb-obj-delete:hover { opacity: 1 !important; color: #f87171; }
   .eb-obj-lock-on {
     color: #6ab0ff;
     opacity: 1;

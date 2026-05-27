@@ -13,10 +13,10 @@
     "windows": [
       {
         "title": "VecStructUI",
-        "width": 1230,
-        "height": 1000,
-        "minWidth": 780,
-        "minHeight": 800
+        "width": 360,
+        "height": 240,
+        "center": true,
+        "visible": true
       }
     ],
     "security": {

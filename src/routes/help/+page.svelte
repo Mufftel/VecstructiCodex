@@ -16,10 +16,12 @@
       id: 'vorwort',
       title: 'Vorwort',
       content: `<h2>Vorwort</h2>
-<p>Meine ersten richtigen Programmierversuche unternahm ich auf einem Atari ST – zu einer Zeit, als Bill Gates und Steve Jobs noch nicht die großen Namen der Branche waren. Schon 1987 bauten wir ein Zeichenprogramm – wir nannten es <strong>King-Paint</strong>, denn wir wollten ja nicht kleckern, sondern klotzen. Es hatte über 7.500 Zeilen Quellcode, und wir konnten es tatsächlich zweimal an einen Radio- und Fernsehhändler verkaufen. Wir sind vor Stolz fast geplatzt.</p>
+<p>Meine ersten richtigen Programmierversuche unternahm ich auf einem Atari ST – zu einer Zeit, als Bill Gates und Steve Jobs noch nicht die großen Namen der Branche waren. Schon 1987 bauten wir ein Zeichenprogramm – wir nannten es <strong>King-Paint</strong> – es sollte besser sein als das damalige MS Paint, denn wir wollten ja nicht kleckern, sondern klotzen. Geschrieben in <strong>GFA-Basic</strong>, hatte es über 7.500 Zeilen Quellcode. Wir boten es einem örtlichen Radio- und Fernsehhändler an – der verlangte allerdings, dass wir noch eine gebundene Anleitung dazu erstellten. Als Gegenleistung bekam jeder von uns einen kleinen Fernseher, und der Händler verkaufte es dann wohl noch drei- bis viermal weiter. Wir sind vor Stolz fast geplatzt.</p>
 <p>Ein herzliches Dankeschön geht an Wolfgang, der mir in über 30 Jahren Computerfreundschaft so vieles beigebracht hat – auch wenn man in letzter Zeit leider wenig von ihm hört. An Peter für die vielen „Klick-und-Klau"-Tipps und die zahlreichen gemeinsamen FileMaker-Projekte, die mir stets viel Freude bereitet haben. An Melchior und Hans, mit denen ich viele schöne Stunden am Computer verbringen durfte. Und an Alfred – den „Bullentöter“ und seinen Kollegen –, der immer der rettende Nagel in letzter Not war. Danke für die vielen schönen Gespräche und Kaffeestunden, die das alles erst so unvergesslich gemacht haben. Ein Dankeschön gilt auch allen anderen, die oft viel Rücksicht nehmen mussten, weil mein Computerhobby einen beträchtlichen Teil meiner Zeit in Anspruch nahm.</p>
-<p>Ich durfte dabei sein und die Computerwelt von ihren Anfängen an miterleben – vom Commodore 64 über Apple und VisiCalc, Turbo Pascal und Borland, bis hin zum heutigen Mac mit M4 und künstlicher Intelligenz. Dafür bin ich unendlich dankbar. Es waren viele unvergessliche Momente, die ich in all diesen Jahren erleben durfte.</p>
+<p>Ich durfte dabei sein und die Computerwelt von ihren Anfängen an miterleben – vom Commodore 64 über Apple und VisiCalc, Turbo Pascal und Borland, bis hin zum heutigen Mac mit M5 und künstlicher Intelligenz. Dafür bin ich unendlich dankbar. Es waren viele unvergessliche Momente, die ich in all diesen Jahren erleben durfte – wie etwa morgens um vier Uhr in einer kilometerlangen Schlange vor dem Apple Store auf das neue iPhone zu warten, oder den nagelneuen iMac abzuholen und ihn, weil man es einfach nicht bis nach Hause schaffte, noch im Parkhaus aus der Verpackung zu reißen und zu bewundern. Und nicht zu vergessen das Erfolgserlebnis, den selbst zusammengebauten Windows-PC zum ersten Mal hochzufahren und stolz auf das eigene Werk zu sein.</p>
+<p>Manchmal aber, wenn ich so zurückblicke, frage ich mich: Was werden wohl die nächsten 30 Jahre bringen? Werden uns KI und Roboter die Arbeit abnehmen – oder werden wir mehr und mehr zu Sklaven dieser Technik? Macht unsere Umwelt das alles noch mit? Und was werden meine Enkelkinder erleben? Ich würde gerne dabei sein und staunen.</p>
 <p>Inzwischen bin ich fast 72 Jahre alt – und es macht immer noch genauso viel Spaß wie am ersten Tag, am Mac neue Ideen zu entdecken und umzusetzen.</p>
+<p>Diese App wurde vollständig mit KI-Unterstützung entwickelt – begonnen mit <strong>Codex</strong> von OpenAI, weitergeführt mit <strong>Claude</strong> von Anthropic. Ich war dabei der Moderator, Promptgeber und derjenige, dem die Fehler aufgefallen sind. Sicher habe ich einige übersehen – aber welche Software ist schon perfekt?</p>
 <p style="margin-top:32px; text-align:right; font-style:italic; color:#444;">Nikolaus, im Mai 2026</p>`
     },
     {
@@ -37,8 +39,8 @@
   <li><a href="#" data-page="9">8. Eigenschaften &amp; Formatierung</a></li>
   <li><a href="#" data-page="10">9. Raster &amp; Fang</a></li>
   <li><a href="#" data-page="11">10. Dateioperationen &amp; Export</a></li>
-  <li><a href="#" data-page="12">11. Tastaturkürzel</a></li>
-  <li><a href="#" data-page="13">12. Formbibliothek</a></li>
+  <li><a href="#" data-page="12">11. Formbibliothek</a></li>
+  <li><a href="#" data-page="13">12. Tastaturkürzel</a></li>
 </ul>`
     },
     {
@@ -277,11 +279,11 @@
     },
     {
       id: 'shapes',
-      title: '12. Formbibliothek',
-      content: `<h2>12. Formbibliothek</h2>
+      title: '11. Formbibliothek',
+      content: `<h2>11. Formbibliothek</h2>
 <p>Die Formbibliothek befindet sich in der rechten Seitenleiste unter dem Reiter <strong>Formen</strong> (Stern-Symbol). Sie enthält zwei Bereiche: eigene gespeicherte Formen und vordefinierte Vorlagen.</p>
 
-<h3>12.1 Eigene Formen speichern</h3>
+<h3>11.1 Eigene Formen speichern</h3>
 <p>Sie können beliebige Objekte von der Zeichenfläche als wiederverwendbare Form speichern:</p>
 <ol>
   <li>Objekte auf der Zeichenfläche markieren – oder nichts markieren, um alle Objekte zu speichern.</li>
@@ -292,24 +294,24 @@
 </ol>
 <p>Die Form wird mit einem Vorschau-Icon gespeichert und bleibt dauerhaft in der App erhalten – unabhängig davon, welches Dokument geöffnet ist.</p>
 
-<h3>12.2 Eigene Form einfügen</h3>
+<h3>11.2 Eigene Form einfügen</h3>
 <p>Auf das <strong>[+]-Symbol</strong> links neben dem Formnamen klicken. Die Form wird zentriert auf der aktuellen Zeichenfläche eingefügt.</p>
 <p>Besteht die Form aus mehreren Objekten, werden sie automatisch als <strong>Gruppe</strong> eingefügt und können gemeinsam verschoben und skaliert werden.</p>
 
-<h3>12.3 Eigene Form löschen</h3>
+<h3>11.3 Eigene Form löschen</h3>
 <p>Auf das <strong>[×]-Symbol</strong> rechts neben dem Formnamen klicken. Die Form wird dauerhaft entfernt.</p>
 
-<h3>12.4 Vordefinierte Vorlagen</h3>
+<h3>11.4 Vordefinierte Vorlagen</h3>
 <p>Im unteren Teil des Formen-Reiters befinden sich vordefinierte Vorlagen, gegliedert in Gruppen (z. B. Grundformen, technische Symbole). Diese sind fest in der App eingebaut und immer verfügbar.</p>
 <p>Klick auf das <strong>[+]-Symbol</strong> fügt die Vorlage zentriert auf der Zeichenfläche ein. Danach kann sie wie jedes andere Objekt bearbeitet werden.</p>
 
-<h3>12.5 Gruppen</h3>
+<h3>11.5 Gruppen</h3>
 <p>Eigene Formen können in Gruppen organisiert werden. Die Gruppen erscheinen als aufklappbare Bereiche. Klick auf den Gruppenname öffnet oder schließt die Gruppe.</p>`
     },
     {
       id: 'shortcuts',
-      title: '11. Tastaturkürzel',
-      content: `<h2>11. Tastaturkürzel</h2>
+      title: '12. Tastaturkürzel',
+      content: `<h2>12. Tastaturkürzel</h2>
 <table class="help-shortcuts-table">
   <thead><tr><th>Kürzel</th><th>Aktion</th></tr></thead>
   <tbody>
