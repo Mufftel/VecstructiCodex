@@ -1,0 +1,73 @@
+Startanleitung fuer Peter
+=========================
+
+Hallo Peter,
+
+anbei bekommst du die Mac-App VecStructUI zum Testen.
+
+Wichtig:
+Die App ist noch nicht offiziell mit einem Apple Developer Zertifikat signiert
+und nicht notarisiert. Deshalb kann macOS beim ersten Start eine Sicherheits-
+warnung anzeigen. Das ist bei Testversionen normal.
+
+
+App starten
+-----------
+
+1. Die ZIP-Datei entpacken.
+2. Die App "VecStructUI.app" in den Programme-Ordner ziehen oder direkt aus
+   dem entpackten Ordner starten.
+3. Beim ersten Start kann macOS melden, dass die App von einem unbekannten
+   Entwickler stammt.
+4. Dann bitte oeffnen:
+
+   Systemeinstellungen > Datenschutz & Sicherheit
+
+5. Dort sollte unten ein Hinweis zur blockierten App erscheinen.
+   Auf "Dennoch oeffnen" klicken.
+6. Danach im naechsten Dialog nochmals "Oeffnen" bestaetigen.
+
+Danach merkt sich macOS diese Freigabe fuer diese App-Datei.
+
+
+Falls macOS die App weiterhin blockiert
+---------------------------------------
+
+Falls macOS meldet, die App sei beschaedigt oder koenne nicht geoeffnet werden,
+kann im Terminal dieser Befehl helfen.
+
+Wichtig: Den Pfad gegebenenfalls anpassen, falls die App woanders liegt.
+
+Wenn die App im Programme-Ordner liegt:
+
+  xattr -dr com.apple.quarantine "/Applications/VecStructUI.app"
+
+Wenn die App noch im Downloads-Ordner liegt:
+
+  xattr -dr com.apple.quarantine "$HOME/Downloads/VecStructUI.app"
+
+Danach die App erneut per Rechtsklick auf die App und "Oeffnen" starten.
+
+
+Hinweis zur Nutzung
+-------------------
+
+VecStructUI speichert Dokumente als Dateien mit der Endung:
+
+  .vecstructi
+
+Diese Dateien enthalten die Zeichnung und die verwendeten Bilder.
+Eine externe SQLite-Installation, Node, npm, Rust oder sonstige Entwickler-
+werkzeuge werden zum Benutzen der App nicht benoetigt.
+
+
+Wenn etwas nicht startet
+------------------------
+
+Bitte notieren:
+
+1. Welche macOS-Version verwendet wird.
+2. Ob der Mac Apple Silicon oder Intel ist.
+3. Welche genaue Fehlermeldung erscheint.
+4. Ob die App aus Downloads, Programme oder einem anderen Ordner gestartet wurde.
+

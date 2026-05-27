@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 4494 3179" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <g transform="matrix(0.16,0,0,0.16,0,0)">
+        <g id="orientation-border" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <rect id="rect2860" x="56.693" y="28.346" width="3285.35" height="2327.24" style="fill:none;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2862" d="M243.78,28.346L243.78,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2864" d="M405.354,28.346L405.354,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2866" d="M566.929,28.346L566.929,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2868" d="M728.504,28.346L728.504,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2870" d="M890.079,28.346L890.079,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2872" d="M1051.65,28.346L1051.65,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2874" d="M1213.23,28.346L1213.23,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2876" d="M1374.8,28.346L1374.8,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2878" d="M1536.38,28.346L1536.38,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2880" d="M1697.95,28.346L1697.95,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2882" d="M1859.53,28.346L1859.53,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2884" d="M2021.1,28.346L2021.1,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2886" d="M2182.68,28.346L2182.68,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2888" d="M2344.25,28.346L2344.25,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2890" d="M2505.83,28.346L2505.83,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2892" d="M2667.4,28.346L2667.4,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2894" d="M2828.98,28.346L2828.98,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2896" d="M2990.55,28.346L2990.55,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2898" d="M3152.13,28.346L3152.13,39.685" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2900" d="M56.693,223.937L68.031,223.937" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2902" d="M56.693,385.512L68.031,385.512" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2904" d="M56.693,547.087L68.031,547.087" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2906" d="M56.693,708.661L68.031,708.661" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2908" d="M56.693,870.236L68.031,870.236" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2910" d="M56.693,1031.81L68.031,1031.81" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2912" d="M56.693,1193.39L68.031,1193.39" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2914" d="M56.693,1354.96L68.031,1354.96" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2916" d="M56.693,1516.54L68.031,1516.54" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2918" d="M56.693,1678.11L68.031,1678.11" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2920" d="M56.693,1839.68L68.031,1839.68" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2922" d="M56.693,2001.26L68.031,2001.26" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2924" d="M56.693,2162.84L68.031,2162.84" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2926" d="M3330.71,223.937L3342.05,223.937" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2928" d="M3330.71,385.512L3342.05,385.512" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2930" d="M3330.71,547.087L3342.05,547.087" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2932" d="M3330.71,708.661L3342.05,708.661" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2934" d="M3330.71,870.236L3342.05,870.236" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2936" d="M3330.71,1031.81L3342.05,1031.81" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2938" d="M3330.71,1193.39L3342.05,1193.39" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2940" d="M3330.71,1354.96L3342.05,1354.96" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2942" d="M3330.71,1516.54L3342.05,1516.54" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2944" d="M3330.71,1678.11L3342.05,1678.11" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2946" d="M3330.71,1839.68L3342.05,1839.68" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2948" d="M3330.71,2001.26L3342.05,2001.26" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2950" d="M3330.71,2162.84L3342.05,2162.84" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2952" d="M243.78,2344.25L243.78,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2954" d="M405.354,2344.25L405.354,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2956" d="M566.929,2344.25L566.929,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2958" d="M728.504,2344.25L728.504,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2960" d="M890.079,2344.25L890.079,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2962" d="M1051.65,2344.25L1051.65,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2964" d="M1213.23,2344.25L1213.23,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2966" d="M1374.8,2344.25L1374.8,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2968" d="M1536.38,2344.25L1536.38,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2970" d="M1697.95,2344.25L1697.95,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2972" d="M1859.53,2344.25L1859.53,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2974" d="M2021.1,2344.25L2021.1,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2976" d="M2182.68,2344.25L2182.68,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2978" d="M2344.25,2344.25L2344.25,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2980" d="M2505.83,2344.25L2505.83,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2982" d="M2667.4,2344.25L2667.4,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2984" d="M2828.98,2344.25L2828.98,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2986" d="M2990.55,2344.25L2990.55,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+            <path id="path2988" d="M3152.13,2344.25L3152.13,2355.59" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.57px;"/>
+        </g>
+        <g id="orientation-text" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <g id="text2991" transform="matrix(1,0,0,1,161.575,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">1</text>
+            </g>
+            <g id="text2993" transform="matrix(1,0,0,1,323.15,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">2</text>
+            </g>
+            <g id="text2995" transform="matrix(1,0,0,1,484.724,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">3</text>
+            </g>
+            <g id="text2997" transform="matrix(1,0,0,1,646.299,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">4</text>
+            </g>
+            <g id="text2999" transform="matrix(1,0,0,1,807.874,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">5</text>
+            </g>
+            <g id="text3001" transform="matrix(1,0,0,1,969.449,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">6</text>
+            </g>
+            <g id="text3003" transform="matrix(1,0,0,1,1131.02,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">7</text>
+            </g>
+            <g id="text3005" transform="matrix(1,0,0,1,1292.6,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">8</text>
+            </g>
+            <g id="text3007" transform="matrix(1,0,0,1,1454.17,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">9</text>
+            </g>
+            <g id="text3009" transform="matrix(1,0,0,1,1612.91,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">10</text>
+            </g>
+            <g id="text3011" transform="matrix(1,0,0,1,1774.49,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">11</text>
+            </g>
+            <g id="text3013" transform="matrix(1,0,0,1,1936.06,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">12</text>
+            </g>
+            <g id="text3015" transform="matrix(1,0,0,1,2097.64,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">13</text>
+            </g>
+            <g id="text3017" transform="matrix(1,0,0,1,2259.21,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">14</text>
+            </g>
+            <g id="text3019" transform="matrix(1,0,0,1,2420.79,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">15</text>
+            </g>
+            <g id="text3021" transform="matrix(1,0,0,1,2582.36,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">16</text>
+            </g>
+            <g id="text3023" transform="matrix(1,0,0,1,2743.94,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">17</text>
+            </g>
+            <g id="text3025" transform="matrix(1,0,0,1,2905.51,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">18</text>
+            </g>
+            <g id="text3027" transform="matrix(1,0,0,1,3067.09,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">19</text>
+            </g>
+            <g id="text3029" transform="matrix(1,0,0,1,3228.66,36.8504)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">20</text>
+            </g>
+            <g id="text3031" transform="matrix(1,0,0,1,59.5276,144.567)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">A</text>
+            </g>
+            <g id="text3033" transform="matrix(1,0,0,1,59.5276,306.142)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">B</text>
+            </g>
+            <g id="text3035" transform="matrix(1,0,0,1,59.5276,467.717)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">C</text>
+            </g>
+            <g id="text3037" transform="matrix(1,0,0,1,59.5276,629.291)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">D</text>
+            </g>
+            <g id="text3039" transform="matrix(1,0,0,1,59.5276,790.866)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">E</text>
+            </g>
+            <g id="text3041" transform="matrix(1,0,0,1,59.5276,952.441)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">F</text>
+            </g>
+            <g id="text3043" transform="matrix(1,0,0,1,59.5276,1114.02)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">G</text>
+            </g>
+            <g id="text3045" transform="matrix(1,0,0,1,59.5276,1275.59)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">H</text>
+            </g>
+            <g id="text3047" transform="matrix(1,0,0,1,59.5276,1437.17)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">I</text>
+            </g>
+            <g id="text3049" transform="matrix(1,0,0,1,59.5276,1598.74)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">K</text>
+            </g>
+            <g id="text3051" transform="matrix(1,0,0,1,59.5276,1760.31)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">L</text>
+            </g>
+            <g id="text3053" transform="matrix(1,0,0,1,59.5276,1921.89)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">M</text>
+            </g>
+            <g id="text3055" transform="matrix(1,0,0,1,59.5276,2083.46)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">N</text>
+            </g>
+            <g id="text3057" transform="matrix(1,0,0,1,59.5276,2245.04)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:8.504px;">O</text>
+            </g>
+            <g id="text3059" transform="matrix(1,0,0,1,3333.54,144.567)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">A</text>
+            </g>
+            <g id="text3061" transform="matrix(1,0,0,1,3333.54,306.142)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">B</text>
+            </g>
+            <g id="text3063" transform="matrix(1,0,0,1,3333.54,467.717)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">C</text>
+            </g>
+            <g id="text3065" transform="matrix(1,0,0,1,3333.54,629.291)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">D</text>
+            </g>
+            <g id="text3067" transform="matrix(1,0,0,1,3333.54,790.866)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">E</text>
+            </g>
+            <g id="text3069" transform="matrix(1,0,0,1,3333.54,952.441)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">F</text>
+            </g>
+            <g id="text3071" transform="matrix(1,0,0,1,3333.54,1114.02)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">G</text>
+            </g>
+            <g id="text3073" transform="matrix(1,0,0,1,3333.54,1275.59)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">H</text>
+            </g>
+            <g id="text3075" transform="matrix(1,0,0,1,3333.54,1437.17)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">I</text>
+            </g>
+            <g id="text3077" transform="matrix(1,0,0,1,3333.54,1598.74)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">K</text>
+            </g>
+            <g id="text3079" transform="matrix(1,0,0,1,3333.54,1760.31)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">L</text>
+            </g>
+            <g id="text3081" transform="matrix(1,0,0,1,3333.54,1921.89)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">M</text>
+            </g>
+            <g id="text3083" transform="matrix(1,0,0,1,3333.54,2083.46)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">N</text>
+            </g>
+            <g id="text3085" transform="matrix(1,0,0,1,3333.54,2245.04)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:8.504px;">O</text>
+            </g>
+            <g id="text3087" transform="matrix(1,0,0,1,161.575,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">1</text>
+            </g>
+            <g id="text3089" transform="matrix(1,0,0,1,323.15,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">2</text>
+            </g>
+            <g id="text3091" transform="matrix(1,0,0,1,484.724,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">3</text>
+            </g>
+            <g id="text3093" transform="matrix(1,0,0,1,646.299,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">4</text>
+            </g>
+            <g id="text3095" transform="matrix(1,0,0,1,807.874,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">5</text>
+            </g>
+            <g id="text3097" transform="matrix(1,0,0,1,969.449,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">6</text>
+            </g>
+            <g id="text3099" transform="matrix(1,0,0,1,1131.02,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">7</text>
+            </g>
+            <g id="text3101" transform="matrix(1,0,0,1,1292.6,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">8</text>
+            </g>
+            <g id="text3103" transform="matrix(1,0,0,1,1454.17,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">9</text>
+            </g>
+            <g id="text3105" transform="matrix(1,0,0,1,1612.91,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">10</text>
+            </g>
+            <g id="text3107" transform="matrix(1,0,0,1,1774.49,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">11</text>
+            </g>
+            <g id="text3109" transform="matrix(1,0,0,1,1936.06,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">12</text>
+            </g>
+            <g id="text3111" transform="matrix(1,0,0,1,2097.64,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">13</text>
+            </g>
+            <g id="text3113" transform="matrix(1,0,0,1,2259.21,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">14</text>
+            </g>
+            <g id="text3115" transform="matrix(1,0,0,1,2420.79,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">15</text>
+            </g>
+            <g id="text3117" transform="matrix(1,0,0,1,2582.36,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">16</text>
+            </g>
+            <g id="text3119" transform="matrix(1,0,0,1,2743.94,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">17</text>
+            </g>
+            <g id="text3121" transform="matrix(1,0,0,1,2905.51,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">18</text>
+            </g>
+            <g id="text3123" transform="matrix(1,0,0,1,3067.09,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">19</text>
+            </g>
+            <g id="text3125" transform="matrix(1,0,0,1,3228.66,2352.76)">
+                <text x="0px" y="0px" style="font-family:'Avenir-Roman', 'Avenir', sans-serif;font-size:8.504px;">20</text>
+            </g>
+        </g>
+        <g id="drawing-border" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <rect id="rect3128" x="68.031" y="39.685" width="3262.68" height="2304.57" style="fill:none;stroke:black;stroke-width:0.99px;"/>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,24971.7,19507.6)">
+            <g id="text3331">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Dateiname</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,25371.5,19288.7)">
+            <g id="text3331-0-4">
+                <text x="-21.885px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:10px;">SUBTITLE</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,25374.2,19120.3)">
+            <g id="text3777">
+                <text x="-15.666px" y="0px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:12px;">TITEL</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,25384.7,18659.5)">
+            <g id="text4647">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Halbzeug</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26608.1,18667.4)">
+            <g id="text5527">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Gewicht in Kg</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26611.3,18565.7)">
+            <g id="text5615">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Material</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,24603.8,18569.8)">
+            <g id="text5779">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">DIN ISO 2768 mK</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,24603.8,18667.3)">
+            <g id="text5863">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Kanten ISO 13715</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,24626.2,18857.8)">
+            <g id="text5947">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Konstrukteur</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,25401.3,18857.8)">
+            <g id="text6031">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Prüfer</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26201.3,18857.8)">
+            <g id="text6195">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Einzelteil</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26201.3,19082.8)">
+            <g id="text6279">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Pr<tspan x="7.992px 13.329px " y="0px 0px ">oj</tspan>ektname</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26201.3,19282.8)">
+            <g id="text6680">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Sachnummer</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26251.3,19482.8)">
+            <g id="text6764">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:10px;">1:1</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26688.8,19482.8)">
+            <g id="text6866">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:10px;">01.01.2022</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,26488.8,19482.8)">
+            <g id="text6950">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:10px;">00</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,27288.8,19482.8)">
+            <g id="text7034">
+                <g transform="matrix(10,0,0,10,12.42,0)">
+                </g>
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:10px;">A0</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,27563.8,19482.8)">
+            <g id="text7118">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:10px;">1/1</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,23541.3,18569.8)">
+            <g id="text7827">
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">T<tspan x="4.167px 9.504px " y="0px 0px ">ol</tspan>erierung ISO 8015</text>
+            </g>
+        </g>
+        <g transform="matrix(8.33478,0,0,8.33189,23541.3,18669.8)">
+            <g id="text7911">
+                <g transform="matrix(9,0,0,9,20.997,0)">
+                </g>
+                <g transform="matrix(9,0,0,9,23.666,0)">
+                </g>
+                <text x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:9px;">Oberﬂäche DIN EN ISO 1302</text>
+            </g>
+        </g>
+        <g id="rect1586" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <rect x="2821.46" y="2218.39" width="509.246" height="125.865" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1588" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M2821.46,2243.86L3330.71,2243.86" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1590" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M2949.58,2218.37L2950.18,2344.27" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1592" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3140.49,2218.37L3140.79,2344.27" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1594" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3140.72,2318.93L3330.71,2318.87" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1596" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3174.07,2318.87L3174.07,2344.27" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1598" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3196.54,2318.87L3196.54,2344.27" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1600" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3262.48,2318.87L3262.75,2344.27" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1602" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M2949.83,2269.58L3330.71,2269.28" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1604" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3140.67,2294.34L3330.71,2294.19" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1606" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3296.43,2318.87L3296.7,2344.27" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1608" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3044.4,2218.37L3044.6,2270.13" style="fill:none;stroke:black;stroke-width:0.99px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="text1610" transform="matrix(0.0906438,0,0,0.0906666,24606.5,19504.6)">
+            <g id="g1612">
+                <text id="text16101" serif:id="text1610" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:642.132px;fill:rgb(43,42,41);">Dateiname:</text>
+            </g>
+        </g>
+        <g id="text1614" transform="matrix(0.0906438,0,0,0.0906666,26188.9,19380.1)">
+            <g id="g1616">
+                <text id="text16141" serif:id="text1614" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Maßstab</text>
+            </g>
+        </g>
+        <g id="text1618" transform="matrix(0.0906438,0,0,0.0906666,26186.5,18966.2)">
+            <g id="g1620">
+                <text id="text16181" serif:id="text1618" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Pr<tspan x="488.758px 815.147px " y="0px 0px ">oj</tspan>ekt</text>
+            </g>
+        </g>
+        <g id="text1622" transform="matrix(0.0906438,0,0,0.0906666,26184.2,19173.7)">
+            <g id="g1624">
+                <text id="text16221" serif:id="text1622" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Sachnummer</text>
+            </g>
+        </g>
+        <g id="text1626" transform="matrix(0.0906438,0,0,0.0906666,26184.2,18750.5)">
+            <g id="g1628">
+                <text id="text16261" serif:id="text1626" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Dokumentenart</text>
+            </g>
+        </g>
+        <g id="text1630" transform="matrix(0.0906438,0,0,0.0906666,26651.4,19378.6)">
+            <g id="g1632">
+                <text id="text16301" serif:id="text1630" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Ausgabedatum</text>
+            </g>
+        </g>
+        <g id="text1634" transform="matrix(0.0906438,0,0,0.0906666,27198.4,19378.6)">
+            <g id="g1636">
+                <text id="text16341" serif:id="text1634" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Blattgr<tspan x="1639.1px 1965.49px " y="0px 0px ">öß</tspan>e</text>
+            </g>
+        </g>
+        <g id="text1638" transform="matrix(0.0906438,0,0,0.0906666,27488.8,19378.1)">
+            <g id="g1640">
+                <text id="text16381" serif:id="text1638" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Blatt</text>
+            </g>
+        </g>
+        <g id="text1642" transform="matrix(0.0906438,0,0,0.0906666,26464.9,19381.8)">
+            <g id="g1644">
+                <text id="text16421" serif:id="text1642" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Änd.</text>
+            </g>
+        </g>
+        <g id="text1646" transform="matrix(0.0906438,0,0,0.0906666,24604.3,18751)">
+            <g id="g1648">
+                <text id="text16461" serif:id="text1646" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">erstellt dur<tspan x="2627.07px 2892.37px " y="0px 0px ">ch</tspan></text>
+            </g>
+        </g>
+        <g id="text1650" transform="matrix(0.0906438,0,0,0.0906666,25384.2,18750.3)">
+            <g id="g1652">
+                <text id="text16501" serif:id="text1650" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Genehmigt von</text>
+            </g>
+        </g>
+        <g id="text1698" transform="matrix(0.0906438,0,0,0.0906666,26207.7,18571.2)">
+            <g id="g1700">
+                <text id="text16981" serif:id="text1698" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:825.591px;fill:rgb(43,42,41);">W<tspan x="764.497px 1223.53px " y="0px 0px ">er</tspan>kstof<tspan x="3240.44px 3484.82px " y="0px 0px ">f:</tspan></text>
+            </g>
+        </g>
+        <g id="text1702" transform="matrix(0.0906438,0,0,0.0906666,26207.7,18667.9)">
+            <g id="g1704">
+                <text id="text17021" serif:id="text1702" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:825.591px;fill:rgb(43,42,41);">Gewicht:</text>
+            </g>
+        </g>
+        <g id="text1706" transform="matrix(0.0906438,0,0,0.0906666,25391.2,18549.8)">
+            <g id="g1708">
+                <text id="text17061" serif:id="text1706" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">Halbzeug</text>
+            </g>
+        </g>
+        <g id="text1746" transform="matrix(0.0906438,0,0,0.0906666,24604.3,18967.9)">
+            <g id="g1748">
+                <text id="text17461" serif:id="text1746" x="0px" y="0px" style="font-family:'Avenir-Book', 'Avenir';font-size:550.403px;fill:rgb(43,42,41);">T<tspan x="312.079px 444.175px " y="0px 0px ">it</tspan>el</text>
+            </g>
+        </g>
+        <g id="ellipse1572" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <ellipse cx="3292.99" cy="2230.32" rx="7.194" ry="7.195" style="fill:none;stroke:rgb(43,42,41);stroke-width:1.13px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="ellipse1574" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <ellipse cx="3292.89" cy="2230.42" rx="4.535" ry="4.536" style="fill:none;stroke:rgb(43,42,41);stroke-width:1.13px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="polygon1576" transform="matrix(0.0906666,0,0,0.0906666,23527.9,18474.1)">
+            <path d="M44335.8,1910.72L44349,559.276L45846,830.778L45839.2,1635.19L44335.8,1910.72Z" style="fill:none;stroke:rgb(43,42,41);stroke-width:104px;stroke-miterlimit:22.9256;"/>
+        </g>
+        <g id="line1578" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3283.39,2230.34L3302.5,2230.34" style="fill:none;stroke:rgb(43,42,41);stroke-width:0.57px;stroke-miterlimit:22.9256;stroke-dasharray:1,0.6,0.2,0.6;"/>
+        </g>
+        <g id="line1580" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3292.99,2220.38L3292.99,2240.34" style="fill:none;stroke:rgb(43,42,41);stroke-width:0.57px;stroke-miterlimit:22.9256;stroke-dasharray:1,0.6,0.2,0.6;"/>
+        </g>
+        <g id="line1582" transform="matrix(8.33333,0,0,8.33333,0,0)">
+            <path d="M3304.67,2230.49L3323.92,2230.41" style="fill:none;stroke:rgb(43,42,41);stroke-width:0.57px;stroke-miterlimit:22.9256;stroke-dasharray:1,0.6,0.2,0.6;"/>
+        </g>
+    </g>
+</svg>
