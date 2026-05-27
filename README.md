@@ -1,20 +1,27 @@
 # VecStructi
 
-**VecStructi** ist eine Vektor-Zeichen- und Layout-Anwendung, entwickelt mit [Tauri](https://tauri.app) und [SvelteKit](https://kit.svelte.dev).
+**Version 0.834**
 
-## Funktionen
+**VecStructi** ist eine native Desktop-Anwendung für technisches Zeichnen und Layout auf dem Mac. Sie richtet sich an Anwender die präzise Vektorgrafiken, Pläne, Schemata oder Konstruktionszeichnungen erstellen wollen — ohne die Komplexität professioneller CAD-Software.
 
-- **Zeichen-Werkzeuge** — Bleistift, Pinsel (11 Pinselformen), Linie, Rechteck, abgerundetes Rechteck, Ellipse, Text, Radierer, Bildrahmen
-- **SVG-Leinwand** — alle Objekte werden als SVG gespeichert, vollständig auflösungsunabhängig
-- **Eigenschaften-Panel** — Position, Größe, Drehung, Scheren, Ebenen, Füllung, Kontur, Schatten, Eckenradien, Textformatierung
-- **Pinsel-Engine** — druckempfindlicher Pinsel mit Formen: Kreis, Rechteck, Linie, Gepunktet, Fächer, Airbrush, Tinte, Kreide, Textur, Zickzack, Doppellinie
-- **Ebenen** — mehrere benannte Ebenen mit Sichtbarkeit und Sperrung, per Drag-and-Drop sortierbar
-- **Raster & Lineale** — konfigurierbares Raster mit Einrasten, Lineale in mm/cm/px/pt/in
-- **Rückgängig / Wiederholen** — vollständige Änderungshistorie
-- **PDF-Export** — Leinwand als PDF exportieren via jsPDF
-- **Speichern/Laden** — native Dateidialoge via Tauri
-- **Seiten-Setup** — einstellbare Leinwandgröße (A4, A3, benutzerdefiniert) mit Hoch-/Querformat
-- **Zoom** — vergrößern/verkleinern, an Fenster anpassen, tatsächliche Größe
+Alle Zeichnungen werden als SVG gespeichert und sind damit vollständig auflösungsunabhängig und skalierbar.
+
+---
+
+## Was die App kann
+
+- **Zeichenwerkzeuge** — Rechteck, Ellipse, Linie, Freihand-Bleistift, Pinsel (11 Formen), Text, Bildrahmen, Wand-Werkzeug, Polygon, Kurven, Rahmen
+- **Präzises Arbeiten** — Raster mit Einrasten, Lineale in mm/cm/px/pt/in, exakte Koordinaten- und Größeneingabe
+- **Eigenschaften** — Füllung, Kontur, Eckenradien, Schatten, Drehung, Scheren, Transparenz, Textformatierung
+- **Ebenen** — mehrere benannte Ebenen, Sichtbarkeit, Sperrung, Drag-and-Drop-Sortierung
+- **Formbibliothek** — vordefinierte Formen (Grundformen, technische Symbole u.v.m.) sowie eigene Formen speichern und wiederverwenden
+- **SVG-Import** — externe SVG-Dateien als Objekte importieren
+- **PDF-Export** — Leinwand als PDF ausgeben
+- **Seiten-Setup** — A4, A3, A0 quer und benutzerdefinierte Formate, Hoch-/Querformat
+- **Rückgängig/Wiederholen** — vollständige Änderungshistorie
+- **Speichern/Laden** — eigenes Dateiformat `.vecstructi` (SQLite-Datenbank)
+
+---
 
 ## Technologien
 
@@ -25,10 +32,9 @@
 | Leinwand | SVG |
 | Pfad-Operationen | paper.js |
 | PDF | jsPDF |
+| Datenbank | SQLite via Tauri SQL Plugin |
 
-## Release
-
-**v1.0** — Mai 2026
+---
 
 ## Build
 
@@ -45,3 +51,7 @@ Die fertige App und das DMG befinden sich unter `src-tauri/target/release/bundle
 npm install
 npm run tauri dev
 ```
+
+---
+
+Siehe auch: [DISCLAIMER.md](DISCLAIMER.md) — Haftungsausschluss
