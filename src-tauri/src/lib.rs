@@ -126,6 +126,23 @@ pub fn run() {
         .plugin(
             tauri_plugin_sql::Builder::default()
                 .add_migrations("sqlite:vecstructi.db", migrations)
+                .add_migrations("sqlite:vecstructi_shapes.db", vec![
+                    Migration {
+                        version: 1,
+                        description: "create_shapes_table",
+                        sql: r#"
+                            CREATE TABLE IF NOT EXISTS shapes (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                name TEXT NOT NULL,
+                                gruppe TEXT NOT NULL DEFAULT '',
+                                objects_json TEXT NOT NULL,
+                                preview_svg TEXT NOT NULL DEFAULT '',
+                                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+                            );
+                        "#,
+                        kind: MigrationKind::Up,
+                    }
+                ])
                 .build(),
         )
         .invoke_handler(tauri::generate_handler![])

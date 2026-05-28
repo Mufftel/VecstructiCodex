@@ -1,5 +1,5 @@
 export const APP_INFO = {
-  version: '0.8259',
+  version: '0.8264',
   developmentStart: '10.05.2026',
   appSize: 'ca. 9 MB',
   author: 'Nikolaus Gerweck',

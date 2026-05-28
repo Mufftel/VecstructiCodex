@@ -1,11 +1,28 @@
 import Database from '@tauri-apps/plugin-sql';
 
 export const DB_PATH = 'sqlite:vecstructi.db';
+export const SHAPES_DB_PATH = 'sqlite:vecstructi_shapes.db';
 export const DEFAULT_DOCUMENT_ID = 'default';
 
 let dbPromise: Promise<Database> | null = null;
 let dbPath = DB_PATH;
 let dbWriteQueue: Promise<unknown> = Promise.resolve();
+
+let shapesDbPromise: Promise<Database> | null = null;
+
+export function getShapesDb(): Promise<Database> {
+  if (!shapesDbPromise) {
+    shapesDbPromise = Database.load(SHAPES_DB_PATH).then(async db => {
+      await db.execute('PRAGMA journal_mode = WAL');
+      await db.execute('PRAGMA synchronous = NORMAL');
+      return db;
+    }).catch(e => {
+      shapesDbPromise = null;
+      throw e;
+    });
+  }
+  return shapesDbPromise;
+}
 
 
 export function getDb(): Promise<Database> {
@@ -41,6 +58,7 @@ export async function closeDb() {
   } catch {}
   await db.close();
   dbPromise = null;
+  shapesDbPromise = null; // shapes pool zurücksetzen falls er mitgeschlossen wurde
   dbWriteQueue = Promise.resolve();
 }
 
@@ -323,6 +341,10 @@ export interface DbRectObject {
   imageRenderW?: number;
   imageRenderH?: number;
   imageMaskD?: string;
+  imageNativeW?: number;
+  imageNativeH?: number;
+  imageFormat?: string;
+  imageSizeBytes?: number;
   shadowEnabled?: boolean;
   shadowX?: number;
   shadowY?: number;
@@ -482,6 +504,10 @@ function rectPayload(rect: DbRectObject): string {
     imageRenderW: rect.imageRenderW,
     imageRenderH: rect.imageRenderH,
     imageMaskD: rect.imageMaskD,
+    imageNativeW: rect.imageNativeW,
+    imageNativeH: rect.imageNativeH,
+    imageFormat: rect.imageFormat,
+    imageSizeBytes: rect.imageSizeBytes,
     shadowEnabled: rect.shadowEnabled,
     shadowX: rect.shadowX,
     shadowY: rect.shadowY,

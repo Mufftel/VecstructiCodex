@@ -4,3 +4,8 @@ src-tauri/target/
 dist/
 build/
 *.vecstructi
+*.vecstructi
+*.vecstructi-shm
+*.vecstructi-wal
+build/
+src-tauri/gen/

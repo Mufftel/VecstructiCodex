@@ -10,7 +10,7 @@
   import { revealItemInDir } from '@tauri-apps/plugin-opener';
   import jsPDF from 'jspdf';
   import html2canvas from 'html2canvas';
-  import { DB_PATH, DEFAULT_DOCUMENT_ID, assertDocumentDbEmpty, clearDocumentDb, closeDb, compactDb, deleteObjectsByUid, getDb, getDbPath, initDocumentDb, loadDocumentLayout, loadLayerObjects, loadLineObjects, loadPathObjects, loadRectObjects, loadTextObjects, queueDbWrite, saveDocumentLayout, setDbPath, upsertLineObject, upsertPathObject, upsertRectObject, upsertTextObject, type DocumentLayoutSettings } from '$lib/db';
+  import { DB_PATH, DEFAULT_DOCUMENT_ID, assertDocumentDbEmpty, clearDocumentDb, closeDb, compactDb, deleteObjectsByUid, getDb, getDbPath, getShapesDb, initDocumentDb, loadDocumentLayout, loadLayerObjects, loadLineObjects, loadPathObjects, loadRectObjects, loadTextObjects, queueDbWrite, saveDocumentLayout, setDbPath, upsertLineObject, upsertPathObject, upsertRectObject, upsertTextObject, type DocumentLayoutSettings } from '$lib/db';
   import { APP_INFO } from '$lib/appInfo';
 
   const RULER_PX = 20;
@@ -29,7 +29,7 @@
     const win = getCurrentWebviewWindow();
     setDbPath(DB_PATH);
     void resetToEmptyWorkingDocument(false);
-    void reloadSavedShapes();
+    void migrateShapesFromJson().then(() => reloadSavedShapes());
     void (async () => {
       try {
         const appWin = getCurrentWindow();
@@ -1335,19 +1335,31 @@
   type SavedShape = { id: number; name: string; gruppe: string; objects_json: string; preview_svg: string };
   let savedShapes = $state<SavedShape[]>([]);
 
-  async function shapesFilePath(): Promise<string> {
-    return join(await appLocalDataDir(), 'vecstructi_shapes.json');
+  async function shapesDbFilePath(): Promise<string> {
+    return await join(await appLocalDataDir(), 'vecstructi_shapes.db');
   }
-  async function loadShapesFromFile(): Promise<SavedShape[]> {
+  async function loadShapesFromDb(): Promise<SavedShape[]> {
+    const db = await getShapesDb();
+    return await db.select<SavedShape[]>('SELECT id, name, gruppe, objects_json, preview_svg FROM shapes ORDER BY id');
+  }
+  async function migrateShapesFromJson(): Promise<void> {
     try {
-      const path = await shapesFilePath();
-      const bytes = await readFile(path);
-      return JSON.parse(new TextDecoder().decode(bytes)) as SavedShape[];
-    } catch { return []; }
-  }
-  async function saveShapesToFile(shapes: SavedShape[]): Promise<void> {
-    const path = await shapesFilePath();
-    await writeFile(path, new TextEncoder().encode(JSON.stringify(shapes)));
+      const jsonPath = await join(await appLocalDataDir(), 'vecstructi_shapes.json');
+      if (!await exists(jsonPath)) return;
+      const bytes = await readFile(jsonPath);
+      const jsonShapes: SavedShape[] = JSON.parse(new TextDecoder().decode(bytes));
+      if (!Array.isArray(jsonShapes) || jsonShapes.length === 0) return;
+      const existing = await loadShapesFromDb();
+      const existingKeys = new Set(existing.map(s => s.name + '|' + s.gruppe));
+      const db = await getShapesDb();
+      for (const s of jsonShapes) {
+        if (existingKeys.has(s.name + '|' + s.gruppe)) continue;
+        await db.execute(
+          'INSERT INTO shapes (name, gruppe, objects_json, preview_svg) VALUES (?, ?, ?, ?)',
+          [s.name, s.gruppe, s.objects_json, s.preview_svg ?? '']
+        );
+      }
+    } catch { /* Migration optional */ }
   }
 
   async function exportShapes() {
@@ -1358,13 +1370,17 @@
         filters: [{ name: 'JSON', extensions: ['json'] }]
       });
       if (!savePath) return;
-      const shapes = await loadShapesFromFile();
+      const shapes = await loadShapesFromDb();
       await writeFile(savePath as string, new TextEncoder().encode(JSON.stringify(shapes, null, 2)));
       formenSetupStatus = `✓ ${shapes.length} Formen exportiert`;
-    } catch (e) {
+    } catch {
       formenSetupStatus = '✗ Export fehlgeschlagen';
     }
   }
+
+  let importModeDialogOpen = $state(false);
+  let importPendingFile    = $state<string>('');
+  let importPendingShapes  = $state<SavedShape[]>([]);
 
   async function importShapes() {
     try {
@@ -1377,14 +1393,51 @@
       const bytes = await readFile(selected as string);
       const imported: SavedShape[] = JSON.parse(new TextDecoder().decode(bytes));
       if (!Array.isArray(imported)) throw new Error('Ungültiges Format');
-      const existing = await loadShapesFromFile();
-      const existingIds = new Set(existing.map(s => s.id));
-      const neu = imported.filter(s => !existingIds.has(s.id));
-      const merged = [...existing, ...neu];
-      await saveShapesToFile(merged);
-      savedShapes = merged;
-      formenSetupStatus = `✓ ${neu.length} neue Formen importiert (${imported.length - neu.length} bereits vorhanden)`;
-    } catch (e) {
+      importPendingFile   = selected as string;
+      importPendingShapes = imported;
+      importModeDialogOpen = true;
+    } catch(e) {
+      formenSetupStatus = '✗ Import fehlgeschlagen';
+      await dialogMessage(`Import Fehler: ${e}`, { title: 'Import Fehler', kind: 'error' });
+    }
+  }
+
+  async function doImportMerge() {
+    importModeDialogOpen = false;
+    try {
+      const db = await getShapesDb();
+      const existing = await loadShapesFromDb();
+      const existingKeys = new Set(existing.map(s => s.name + '|' + s.gruppe));
+      let neu = 0;
+      for (const s of importPendingShapes) {
+        if (existingKeys.has(s.name + '|' + s.gruppe)) continue;
+        await db.execute(
+          'INSERT INTO shapes (name, gruppe, objects_json, preview_svg) VALUES (?, ?, ?, ?)',
+          [s.name, s.gruppe, s.objects_json, s.preview_svg ?? '']
+        );
+        neu++;
+      }
+      savedShapes = await loadShapesFromDb();
+      formenSetupStatus = `✓ ${neu} neue Formen angehängt (${importPendingShapes.length - neu} bereits vorhanden)`;
+    } catch(e) {
+      formenSetupStatus = '✗ Import fehlgeschlagen';
+    }
+  }
+
+  async function doImportOverwrite() {
+    importModeDialogOpen = false;
+    try {
+      const db = await getShapesDb();
+      await db.execute('DELETE FROM shapes');
+      for (const s of importPendingShapes) {
+        await db.execute(
+          'INSERT INTO shapes (name, gruppe, objects_json, preview_svg) VALUES (?, ?, ?, ?)',
+          [s.name, s.gruppe, s.objects_json, s.preview_svg ?? '']
+        );
+      }
+      savedShapes = await loadShapesFromDb();
+      formenSetupStatus = `✓ ${importPendingShapes.length} Formen importiert (alle alten ersetzt)`;
+    } catch(e) {
       formenSetupStatus = '✗ Import fehlgeschlagen';
     }
   }
@@ -2571,6 +2624,26 @@
       if (handle === 'bl') { nx = sx+dx;              nw = sw-dx; nh = sh+dy; }
       if (handle === 'bc') {                                        nh = sh+dy; }
       if (handle === 'br') {                           nw = sw+dx; nh = sh+dy; }
+      if (propLock && sw > 0 && sh > 0) {
+        const ar = sw / sh;
+        const cornerHandles = ['tl','tr','bl','br'];
+        const hHandles = ['ml','mr'];
+        const vHandles = ['tc','bc'];
+        if (cornerHandles.includes(handle)) {
+          // Größere Änderung bestimmt
+          if (Math.abs(nw - sw) >= Math.abs(nh - sh)) {
+            nh = nw / ar;
+            if (handle === 'tl' || handle === 'tr') ny = sy + (sh - nh);
+          } else {
+            nw = nh * ar;
+            if (handle === 'tl' || handle === 'bl') nx = sx + (sw - nw);
+          }
+        } else if (hHandles.includes(handle)) {
+          nh = nw / ar;
+        } else if (vHandles.includes(handle)) {
+          nw = nh * ar;
+        }
+      }
       obj.x = snapX(Math.round(nx)); obj.y = snapY(Math.round(ny));
       obj.w = snapX(Math.round(Math.max(4, nw))); obj.h = snapY(Math.round(Math.max(4, nh)));
       if (obj.type === 'PFAD' && sw > 0 && sh > 0) {
@@ -4007,7 +4080,12 @@
   }
 
   async function reloadSavedShapes() {
-    savedShapes = await loadShapesFromFile();
+    try {
+      savedShapes = await loadShapesFromDb();
+    } catch(e) {
+      await dialogMessage(`Formen-DB Fehler: ${e}`, { title: 'Fehler', kind: 'error' });
+      savedShapes = [];
+    }
   }
 
   async function doSaveShape() {
@@ -4066,14 +4144,11 @@
         previewSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${pvW} ${pvH}" width="${pvW}" height="${pvH}">${parts}</svg>`;
       } catch { /* Preview-Fehler ignorieren */ }
 
-      const newShape: SavedShape = {
-        id: Date.now(),
-        name,
-        gruppe: shapeSaveGruppe.trim(),
-        objects_json: JSON.stringify(normalized),
-        preview_svg: previewSvg,
-      };
-      await saveShapesToFile([...savedShapes, newShape]);
+      const db = await getShapesDb();
+      await db.execute(
+        'INSERT INTO shapes (name, gruppe, objects_json, preview_svg) VALUES (?, ?, ?, ?)',
+        [name, shapeSaveGruppe.trim(), JSON.stringify(normalized), previewSvg]
+      );
       await reloadSavedShapes();
       shapeSaveDialogOpen = false;
       shapeSaveName = '';
@@ -4111,7 +4186,8 @@
   }
 
   async function doDeleteShape(id: number) {
-    await saveShapesToFile(savedShapes.filter(s => s.id !== id));
+    const db = await getShapesDb();
+    await db.execute('DELETE FROM shapes WHERE id = ?', [id]);
     await reloadSavedShapes();
   }
 
@@ -5817,7 +5893,7 @@ onwheel={(ev) => {
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           Importieren…
         </button>
-        <button class="btn-secondary" onclick={() => revealItemInDir(formenSetupPfad)}>
+        <button class="btn-secondary" onclick={async () => revealItemInDir(await shapesDbFilePath())}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           Im Finder zeigen
         </button>
@@ -5828,6 +5904,38 @@ onwheel={(ev) => {
     </div>
     <div class="setup-footer">
       <button class="btn-primary" onclick={() => formenSetupOpen = false}>Schließen</button>
+    </div>
+  </div>
+</div>
+{/if}
+
+
+<!-- ── Import Modus Dialog ───────────────────────────────────────────────── -->
+{#if importModeDialogOpen}
+<div class="setup-backdrop" onclick={() => importModeDialogOpen = false}>
+  <div class="import-mode-dialog" onclick={(e) => e.stopPropagation()}>
+    <div class="setup-header">
+      <span>Formen importieren</span>
+      <button class="setup-close" onclick={() => importModeDialogOpen = false}>✕</button>
+    </div>
+    <div class="import-mode-body">
+      <p class="import-mode-info">{importPendingShapes.length} Formen in der Datei — wie soll importiert werden?</p>
+      <div class="import-mode-actions">
+        <button class="import-mode-btn" onclick={doImportMerge}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <div>
+            <strong>Anhängen</strong>
+            <span>Neue Formen werden hinzugefügt, vorhandene bleiben erhalten</span>
+          </div>
+        </button>
+        <button class="import-mode-btn import-mode-overwrite" onclick={doImportOverwrite}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M9 6V4h6v2"/></svg>
+          <div>
+            <strong>Überschreiben</strong>
+            <span>Alle vorhandenen Formen werden gelöscht und ersetzt</span>
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -6104,7 +6212,7 @@ onwheel={(ev) => {
               </button>
             </li>
             <li>
-              <button class="menu-cmd" onclick={async () => { closeAllMenus(); formenSetupPfad = await shapesFilePath(); formenSetupStatus = ''; formenSetupOpen = true; }}>
+              <button class="menu-cmd" onclick={async () => { closeAllMenus(); formenSetupPfad = await shapesDbFilePath(); formenSetupStatus = ''; formenSetupOpen = true; }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                 Setup…
               </button>
@@ -8718,11 +8826,35 @@ onwheel={(ev) => {
       <!-- ── Formen-Tab ───────────────────────────────────────────────── -->
       {#if propTab === 'formen'}
       <div class="shapes-panel">
+        <!-- Alles ein-/ausklappen -->
+        {#if true}
+          {@const allCollapsed = savedShapeGroups().every(g => collapsedSavedGroups.has(g.name)) && libraryShapeGroups.every(g => collapsedShapeGroups.has(g.name))}
+        <div class="shapes-panel-topbar">
+          <button class="shapes-collapse-all-btn" title={allCollapsed ? 'Alles ausklappen' : 'Alles einklappen'} onclick={() => {
+            if (allCollapsed) {
+              collapsedSavedGroups = new Set();
+              collapsedShapeGroups = new Set();
+            } else {
+              collapsedSavedGroups = new Set(savedShapeGroups().map(g => g.name));
+              collapsedShapeGroups = new Set(libraryShapeGroups.map(g => g.name));
+            }
+          }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+              {#if allCollapsed}
+                <polyline points="6 9 12 15 18 9"/>
+              {:else}
+                <polyline points="18 15 12 9 6 15"/>
+              {/if}
+            </svg>
+            {allCollapsed ? 'Ausklappen' : 'Einklappen'}
+          </button>
+        </div>
+        {/if}
         <!-- Eigene gespeicherte Formen -->
         <div class="saved-shapes-section">
           <div class="saved-shapes-header">
             <span class="saved-shapes-title">Eigene Formen</span>
-            <button class="saved-shapes-save-btn" title="Auswahl (oder alle) als Form speichern" onclick={() => { shapeSaveName = ''; shapeSaveGruppe = ''; shapeSaveDialogOpen = true; }}>
+            <button class="saved-shapes-save-btn" title="Auswahl als Form speichern" disabled={selectedObjs.length === 0} onclick={() => { shapeSaveName = ''; shapeSaveGruppe = ''; shapeSaveDialogOpen = true; }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               Speichern
             </button>
@@ -9308,6 +9440,39 @@ onwheel={(ev) => {
   }
 
 
+
+  .import-mode-dialog {
+    background: #1e2128;
+    border: 1px solid #3a3f4a;
+    border-radius: 10px;
+    width: 380px;
+    color: #ccc;
+    font-size: 13px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.6);
+  }
+  .import-mode-body {
+    padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .import-mode-info {
+    color: #888; font-size: 12px; margin: 0;
+  }
+  .import-mode-actions {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .import-mode-btn {
+    display: flex; align-items: center; gap: 12px;
+    background: #14171d; border: 1px solid #2a2f3a;
+    border-radius: 7px; padding: 12px 14px;
+    color: #ccc; cursor: pointer; text-align: left;
+    transition: border-color 120ms, background 120ms;
+  }
+  .import-mode-btn:hover { background: #1a1f2a; border-color: #3b82f6; }
+  .import-mode-btn div { display: flex; flex-direction: column; gap: 2px; }
+  .import-mode-btn strong { font-size: 13px; color: #e0e0e0; }
+  .import-mode-btn span { font-size: 11px; color: #666; }
+  .import-mode-overwrite:hover { border-color: #f87171; }
+  .import-mode-overwrite:hover strong { color: #f87171; }
 
   .formen-setup-dialog {
     background: #1e2128;
@@ -10066,6 +10231,19 @@ onwheel={(ev) => {
   .eb-opacity-val { font-size: 10px; color: #8899aa; width: 32px; text-align: right; flex-shrink: 0; }
 
   /* ── Formen-Tab ─────────────────────────────────────────────────────── */
+  .shapes-panel-topbar {
+    padding: 5px 8px 4px;
+    border-bottom: 1px solid #222;
+    display: flex; align-items: center;
+  }
+  .shapes-collapse-all-btn {
+    display: flex; align-items: center; gap: 5px;
+    background: none; border: none; color: #666;
+    font-size: 11px; cursor: pointer; padding: 2px 4px;
+    border-radius: 4px;
+  }
+  .shapes-collapse-all-btn:hover { color: #aaa; background: rgba(255,255,255,.06); }
+
   .shapes-panel {
     flex: 1 1 0;
     height: calc(100vh - 162px);
@@ -10158,6 +10336,7 @@ onwheel={(ev) => {
     transition: background .12s;
   }
   .saved-shapes-save-btn:hover { background: #1e3050; color: #9bbfdf; }
+  .saved-shapes-save-btn:disabled { opacity: 0.35; cursor: not-allowed; }
   .saved-shapes-empty {
     font-size: 11px;
     color: #4a5a70;
